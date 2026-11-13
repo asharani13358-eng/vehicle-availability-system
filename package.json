@@ -1,0 +1,15 @@
+{
+  "name": "vehicle-availability-system",
+  "version": "1.0.0",
+  "description": "Full-stack Vehicle Availability System (Node.js/Express + React/Vite)",
+  "private": true,
+  "engines": { "node": ">=18.11" },
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "test": "npm test --prefix server"
+  },
+  "devDependencies": { "concurrently": "^8.2.2" }
+}

@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug API (Node)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server/src/index.js",
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug API tests (Jest)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server/node_modules/jest/bin/jest.js",
+      "args": ["--runInBand"],
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal"
+    }
+  ]
+}

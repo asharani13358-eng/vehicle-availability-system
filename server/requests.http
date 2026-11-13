@@ -1,0 +1,23 @@
+### Quick API tests (install the "REST Client" VS Code extension, click "Send Request")
+@base = http://localhost:3001/api
+
+### Health
+GET {{base}}/health
+
+### Vehicles available for a date range
+GET {{base}}/vehicles?start=2030-01-10&end=2030-01-12&available=true
+
+### Create vehicle
+POST {{base}}/vehicles
+Content-Type: application/json
+
+{ "name": "Mahindra Thar", "plate": "PB10ZZ0001", "type": "car", "seats": 4, "dailyRate": 2800 }
+
+### Book a vehicle
+POST {{base}}/bookings
+Content-Type: application/json
+
+{ "vehicleId": "v1", "customer": "Amrit Singh", "start": "2030-01-10", "end": "2030-01-12" }
+
+### List bookings
+GET {{base}}/bookings
