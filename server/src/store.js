@@ -2,7 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const FILE = process.env.DB_FILE || path.join(__dirname, '..', 'data', 'db.json');
+const FILE =
+  process.env.DB_FILE ||
+  (process.env.VERCEL ? '/tmp/db.json' : path.join(__dirname, '..', 'data', 'db.json'));
 const persist = process.env.NODE_ENV !== 'test';
 
 const seedVehicles = () => [
@@ -22,8 +24,12 @@ function reset(withSeed = true) {
 
 function save() {
   if (!persist) return;
-  fs.mkdirSync(path.dirname(FILE), { recursive: true });
-  fs.writeFileSync(FILE, JSON.stringify(db, null, 2));
+  try {
+    fs.mkdirSync(path.dirname(FILE), { recursive: true });
+    fs.writeFileSync(FILE, JSON.stringify(db, null, 2));
+  } catch (e) {
+    console.warn('Could not save data:', e.message);
+  }
 }
 
 function load() {
